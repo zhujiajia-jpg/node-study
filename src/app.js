@@ -6,6 +6,7 @@ const R = require('./result')
 const expressJWT = require('express-jwt')
 const config =require('./config')
 const userInfoRouter = require('./router/userInfo');
+const calendarRouter = require("./router/calendar")
 
 const app = express()
 
@@ -39,6 +40,7 @@ app.use(expressJWT({ secret: config.jwtSecretKey }).unless({ path: [/^\/api\//] 
 //router对象注册的接口、注册router
 app.use("/api",userRouter)
 app.use("/user",userInfoRouter)
+app.use("/api/calendar",calendarRouter)
 
 //自己注册的接口
 app.get("/api/sayHello", (req,res) =>{
